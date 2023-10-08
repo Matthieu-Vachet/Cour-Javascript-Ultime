@@ -1,0 +1,1 @@
+// Objectif : Créez une calculatrice simple qui peut effectuer des opérations d'addition, de soustraction, de multiplication et de division. Vous pouvez créer des variables pour les nombres saisis et des fonctions pour chaque opération.
