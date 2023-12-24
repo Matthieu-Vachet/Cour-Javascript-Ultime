@@ -22,3 +22,21 @@ let citations = [
     ["Vous n’êtes jamais trop vieux pour vous fixer de nouveaux buts, ou rendre vos rêves réalité.", "C.S. Lewis"],
     ["Un pessimiste voit la difficulté dans chaque opportunité. Un optimiste voit une opportunité dans chaque difficulté.", "Winston Churchill"]
   ];
+
+  let citation = document.getElementById("citation");
+  let auteur = document.getElementById("auteur");
+  let btn = document.getElementById("nouveau");
+
+  // variabe
+  let nombreAleatoire = Math.floor(Math.random() * citations.length);
+  let dernier = 0;
+
+  // onclick
+    btn.onclick = () => {
+        do {
+        nombreAleatoire = Math.floor(Math.random() * citations.length);
+        } while (nombreAleatoire == dernier);
+        citation.innerHTML = citations[nombreAleatoire][0];
+        auteur.innerHTML = citations[nombreAleatoire][1];
+        dernier = nombreAleatoire;
+    };
