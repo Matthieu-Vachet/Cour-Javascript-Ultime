@@ -1456,3 +1456,138 @@ for (let i = 0; i < numbers.length; i++) {
   sum += numbers[i];
 }
 console.log(sum);*/
+
+// let name = "Matthieu";
+// for (let i = 0; i < name.length; i++) {
+//   console.log(name[i]);
+// }
+
+// let dt = new Date();
+// let jour = dt.getDate();
+// let msg = ""
+// switch (jour) {
+//   case 1:
+//     msg = "Aujourd'hui c'est le premier jour du mois.";
+//     break;
+//     case 4:
+//     msg = "Aujourd'hui c'est le quatrième jour du mois.";
+//     break;
+//     case 15:
+//     msg = "Aujourd'hui c'est Ple quinzième jour du mois.";
+//     break;
+//   default:
+//     msg = "Aujourd'hui ce n'est ni le premier ni le quinzième jour du mois.";
+// }
+// console.log(msg);
+// console.log(jour);
+
+// let count = 0;
+// let somme = 0;
+// console.log(typeof count);
+// console.log(typeof somme);
+
+// while (somme < 1000) {
+//     count++;
+//     somme += count;
+//     console.log(`${count} : ${somme}`);
+// }
+
+// let name = "Matthieu";
+// console.log(name);
+
+// let lastName = "vachet";
+// let fullName = name + " " + lastName;
+// console.log(fullName);
+
+// function verificationString(str, str2) {
+
+//   if (typeof str !== "string" && str.length === 0) {
+//     return "Votre reponsé n'est pas un mot"
+//   }
+  
+//   if (str.includes(str2)) {
+//     return `Le mot ${str} contient bien ${str2}`
+//   } else {
+//     return `Le mot ${str} ne contient pas ${str2}`
+//   }
+// }
+// console.log(verificationString("Java  et le meilleur language Python", "Script"))
+
+
+// function verifMot(str, str2) {
+//   if (typeof str !== "string") return ""
+
+//   if (str.includes(str2)) {
+//     return console.log(`${str2} et bien inclus dans la phrase ${str}`)
+//   } else {
+//     return console.log(`${str2} n'est pas inclus dans la phrase ${str}`)
+//   }
+// }
+// console.log(verifMot("1234 et un nombre", "1234"))
+// let n = "#"
+// function exerciceBoucle(str) {
+//   for (let i = 0; i <= str; i++){
+//     console.log(` La somme de tout les nombre de `)
+//   }
+// }
+// exerciceBoucle(100)
+ 
+let letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+let identifiant = ''
+
+// function tableau() {
+//   for (let i = 0; i < 5; i++){
+//     let randomIndex = Math.floor(Math.random() * letters.length);
+//     identifiant += letters[randomIndex];
+//   }
+//   return identifiant
+// }
+// let id = tableau()
+// console.log(id)
+// let newArr = []
+
+// function tableau() {
+  
+
+//  for (let i = 0; i < 5; i++){
+//   let randomNbr = Math.floor(Math.random() * 100) + 1;
+//   newArr.push(randomNbr)
+// }
+// return newArr
+// }
+
+// let nvxArray = tableau()
+// console.log(nvxArray)
+
+// function generateurHexadecimal() {
+//   // Inititalisation des variable pour le code généré et les caractére a utiliser 
+//   let hexCode = `#`
+//   let caracteres = `0123456789ABCDEF`
+  
+//   for (let i = 0; i < 6; i++){
+//     let randomLetters = Math.floor(Math.random() * caracteres.length)
+//     hexCode += caracteres[randomLetters]
+//   }
+
+//   return hexCode
+// }
+
+// let couleurAleatoire = generateurHexadecimal()
+// console.log(couleurAleatoire)
+
+function générateurRgb() {
+
+  let codeRgb = "rgb"
+  let nombreUn, nombreDeux, nombreTrois
+
+    nombreUn = Math.floor(Math.random() * 250)
+    nombreDeux = Math.floor(Math.random() * 250)
+    nombreTrois = Math.floor(Math.random() * 250)
+
+  
+  codeRgb += `(${nombreUn},${nombreDeux},${nombreTrois})`
+  return codeRgb
+}
+
+let codeGenerer = générateurRgb()
+console.log(codeGenerer)
