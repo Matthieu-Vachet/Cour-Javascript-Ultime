@@ -1457,6 +1457,7 @@ for (let i = 0; i < numbers.length; i++) {
 }
 console.log(sum);*/
 
+<<<<<<< HEAD
 // let name = "Matthieu";
 // for (let i = 0; i < name.length; i++) {
 //   console.log(name[i]);
@@ -1591,3 +1592,268 @@ function générateurRgb() {
 
 let codeGenerer = générateurRgb()
 console.log(codeGenerer)
+=======
+// let newArr = [];
+
+// for (let i = 0; i < countries.length; i++) {
+//   newArr.push(countries[i].toUpperCase());
+// }
+
+// console.log(`NewArr : ${newArr}`);
+
+// let newArr = [];
+
+// for (let i = 0; i < countries.length; i++) {
+//   newArr.push(countries[i].length)
+// }
+
+// console.log(`newArr = ${newArr}`)
+
+// let newArr = [];
+
+// for (let i = 0; i < countries.length; i++) {
+//   newArr.push([countries[i], countries[i].slice(0, 3).toUpperCase(), countries[i].length])
+// }
+
+// console.log(newArr)
+let newArr = []
+
+// function trieTableau() {
+//   for (let i = 0; i < countries.length; i++){
+//     if (countries[i].includes("land")) {
+//       newArr.push(countries[i])
+//     }
+//   }
+  
+//   if (newArr.length === 0) {
+//     console.log(`Tous ces pays sont sans Land`)
+//   } else {
+//     console.log(newArr)
+//   }
+// }
+
+// trieTableau()
+  
+// function triTab() {
+
+//   for (let i =0; i<countries.length; i++) {
+//     if (countries[i].includes("ia")){
+//       newArr.push(countries[i])
+//     }
+//   }
+//   if (newArr.length === 0){
+//     console.log(`Aucun pays qui finissent par IA`)
+//   } else {
+//     console.log(newArr)
+//   }
+// }
+// triTab()
+
+// let plusLongPays = countries[0];
+// let maxLongueur = countries[0].length;
+
+// for (const pays of countries) {
+//   if (pays.length > maxLongueur) {
+//     plusLongPays = pays;
+//     maxLongueur = pays.length;
+//   }
+// }
+
+// console.log(plusLongPays, maxLongueur);
+
+// let paysDeCinq = []
+
+// for (let i = 0; i < countries.length; i++) {
+//   if (countries[i].length === 5) {
+//   paysDeCinq.push(countries[i])
+//   }
+// }
+
+
+// console.log(paysDeCinq)
+
+// let motLePlusLong = [0]
+// let maxLongueur = [0]
+
+// for (tech of webTechs) {
+//   if (tech.length > maxLongueur){
+//     motLePlusLong = tech
+//     maxLongueur = tech.length
+//   }
+// }
+
+// console.log( maxLongueur, motLePlusLong)
+
+// let motDuTableau = []
+// let nombreDeLettre = []
+
+// for (let i = 0; i < webTechs.length; i++) {
+//   motDuTableau.push(`["${webTechs[i]}" ${webTechs[i].length}]`)
+// }
+
+// console.log(motDuTableau)
+
+// const mernStack = ['MongoDB', 'Express', 'React', 'Node']
+
+// for (let i = 0; i < mernStack.length; i++) {
+//   newArr.push(mernStack[i].slice(0,1))
+// }
+
+// console.log(newArr.join(''))
+
+// const web =  ["HTML", "CSS", "JS", "React", "Redux", "Node", "Express", "MongoDB"]
+
+// for (tech of web) {
+//   newArr.push(tech)
+// }
+
+// console.log(newArr)
+
+// const fruits = ['banana', 'orange', 'mangue', 'citron'];
+// const fruitsInverses = [];
+
+// for (let i = fruits.length - 1; i >= 0 ; i--){
+//   fruitsInverses.push(fruits[i])
+// }
+
+// console.log(fruitsInverses)
+
+// const fullStack = [
+//     ['HTML', 'CSS', 'JS', 'React'],
+//     ['Node', 'Express', 'MongoDB']
+//   ]
+
+// for (let i = 0; i < fullStack.length; i++){
+//   for (let j = 0; j < fullStack[i].length; j++ ) {
+//     newArr.push(fullStack[i][j].toUpperCase())
+//   }
+// }
+
+// console.log(newArr.join('\n'))
+
+// const countries = [
+//   "Albania",
+//   "Bolivia",
+//   "Canada",
+//   "Denmark",
+//   "Ethiopia",
+//   "Finland",
+//   "Germany",
+//   "Hungary",
+//   "Ireland",
+//   "Japan",
+//   "Kenya",
+// ];
+
+// const webTechs = [
+//   'HTML',
+//   'CSS',
+//   'JavaScript',
+//   'React',
+//   'Redux',
+//   'Node',
+//   'MongoDB'
+// ]
+
+// let copieCountry = []
+// let maxLongueur = [countries[0].length]
+// let plusGrandMot = [countries[0]]
+
+// for (pays of countries) {
+//   if (pays.length > maxLongueur){
+//     maxLongueur = pays.length
+//     plusGrandMot = pays
+//   }
+// }
+
+// console.log(maxLongueur, plusGrandMot)
+
+// for (let i = 0; i < countries.length; i++){
+//   if (countries[i].includes("land")){
+//     copieCountry.push(countries[i])
+//   }
+// }
+
+// console.log(copieCountry)
+
+// for (let i = 0; i < countries.length; i++) {
+//   if (countries[i].length === 4){
+//     copieCountry.push(countries[i])
+//   }
+// }
+
+// console.log(copieCountry)
+
+// let tableauInverser = []
+
+// for (let i= countries.length - 1; i >= 0; i--){
+//   tableauInverser.push(countries[i])
+// }
+
+// console.log(tableauInverser)
+
+
+
+
+//////////////////////////// FONCTION /////////////////////////////////////
+
+
+// Une aire d'un rectangle est calculée comme suit : surface = longueur x largeur. 
+// Écrivez une fonction qui calcule areaOfRectangle.
+
+// function areaOfRectangle(lg,la) {
+//   return `${lg * la} `
+// }
+
+// console.log(areaOfRectangle(2, 2))
+
+// le périmètre d'un rectangle est calculé comme suit : 
+// périmètre = 2x (longueur + largeur). Écrivez une fonction qui calcule le périmètreOfRectangle.
+
+// let périmètreOfRectangle = (lg, la) => (lg + la) * 2
+
+// console.log(périmètreOfRectangle(2, 2))
+
+// Un volume d'un prisme rectangulaire est calculé comme suit :
+//  volume = longueur x largeur x hauteur. Écrivez une fonction qui calcule volumeOfRectPrism.
+
+// let volumeOfRectPrism = (longueur, largeur, hauteur) => longueur * largeur * hauteur
+
+// console.log(volumeOfRectPrism(2, 2, 2))
+
+// L'aire d'un cercle est calculée comme suit : 
+// surface = π x r x r. Écrivez une fonction qui calcule la zone de cercle
+
+// let airCercle = (r) => Math.PI * r * r
+
+// console.log(airCercle(2))
+
+// La circonférence d'un cercle est calculée comme suit : 
+// circonférence = 2πr. Écrivez une fonction qui calcule circumOfCircle
+
+// let circumOfCircle = (r) => 2 * Math.PI * r
+
+// console.log(circumOfCircle(2))
+
+// La densité d'une substance est calculée comme suit : 
+// densité = masse/volume. Écrivez une fonction qui calcule la densité.
+
+// let densite = (masse, volume) => masse / volume
+
+// console.log(`La densité est égale a = ${densite(3, 8)} `)
+
+// La vitesse est calculée en divisant la distance totale 
+// parcourue par un objet en mouvement par le temps total pris. 
+// Écrivez une fonction qui calcule la vitesse d'un objet en mouvement, la vitesse.
+
+// let vitesseObjet = (distanceTotal, tempTotalPris) => distanceTotal / tempTotalPris
+
+// console.log (`La vitesse de votre voiture est de : ${vitesseObjet(1000, 3)}km/h`)
+
+// Le poids d'une substance est calculé comme suit : 
+// poids = masse x gravité. Écrivez une fonction qui calcule le poids.
+
+// let poidSubstance = (masse, gravité) => masse * gravité
+
+// console.log(poidSubstance(3, 4))
+>>>>>>> d4c89e76b130c99b15830c940d11bc7e040d4b30
