@@ -1,0 +1,22 @@
+// Trouver le nombre qui apparaît le plus souvent dans un tableau
+
+tableauPrincipal <-- [1, 2, 2, 3, 3, 3, 4]
+compteur <-- {}
+maxValeur <-- 0
+maxFréquence <-- 0
+
+début
+  pour chaque valeur dans tableauPrincipal faire 
+    si valeur existe dans compteur faire
+        compteur[valeur] <-- compteur[valeur] + 1
+      sinon 
+        compteur[valeur] <-- 1
+    fin_si
+  fin_pour
+  pour chaque cles dans compteur faire
+     si compteur[cles] > que maxFréquence alors
+        maxFréquence <-- compteur[cles]
+        maxValeur <-- cles
+    fin_si 
+  fin_pour
+fin 

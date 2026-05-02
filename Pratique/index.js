@@ -1480,7 +1480,7 @@ console.log(sum);*/
 // }
 
 // console.log(newArr)
-let newArr = []
+let newArr = [];
 
 // function trieTableau() {
 //   for (let i = 0; i < countries.length; i++){
@@ -1488,7 +1488,7 @@ let newArr = []
 //       newArr.push(countries[i])
 //     }
 //   }
-  
+
 //   if (newArr.length === 0) {
 //     console.log(`Tous ces pays sont sans Land`)
 //   } else {
@@ -1497,7 +1497,7 @@ let newArr = []
 // }
 
 // trieTableau()
-  
+
 // function triTab() {
 
 //   for (let i =0; i<countries.length; i++) {
@@ -1532,7 +1532,6 @@ let newArr = []
 //   paysDeCinq.push(countries[i])
 //   }
 // }
-
 
 // console.log(paysDeCinq)
 
@@ -1656,13 +1655,9 @@ let newArr = []
 
 // console.log(tableauInverser)
 
-
-
-
 //////////////////////////// FONCTION /////////////////////////////////////
 
-
-// Une aire d'un rectangle est calculée comme suit : surface = longueur x largeur. 
+// Une aire d'un rectangle est calculée comme suit : surface = longueur x largeur.
 // Écrivez une fonction qui calcule areaOfRectangle.
 
 // function areaOfRectangle(lg,la) {
@@ -1671,7 +1666,7 @@ let newArr = []
 
 // console.log(areaOfRectangle(2, 2))
 
-// le périmètre d'un rectangle est calculé comme suit : 
+// le périmètre d'un rectangle est calculé comme suit :
 // périmètre = 2x (longueur + largeur). Écrivez une fonction qui calcule le périmètreOfRectangle.
 
 // let périmètreOfRectangle = (lg, la) => (lg + la) * 2
@@ -1685,38 +1680,121 @@ let newArr = []
 
 // console.log(volumeOfRectPrism(2, 2, 2))
 
-// L'aire d'un cercle est calculée comme suit : 
+// L'aire d'un cercle est calculée comme suit :
 // surface = π x r x r. Écrivez une fonction qui calcule la zone de cercle
 
 // let airCercle = (r) => Math.PI * r * r
 
 // console.log(airCercle(2))
 
-// La circonférence d'un cercle est calculée comme suit : 
+// La circonférence d'un cercle est calculée comme suit :
 // circonférence = 2πr. Écrivez une fonction qui calcule circumOfCircle
 
 // let circumOfCircle = (r) => 2 * Math.PI * r
 
 // console.log(circumOfCircle(2))
 
-// La densité d'une substance est calculée comme suit : 
+// La densité d'une substance est calculée comme suit :
 // densité = masse/volume. Écrivez une fonction qui calcule la densité.
 
 // let densite = (masse, volume) => masse / volume
 
 // console.log(`La densité est égale a = ${densite(3, 8)} `)
 
-// La vitesse est calculée en divisant la distance totale 
-// parcourue par un objet en mouvement par le temps total pris. 
+// La vitesse est calculée en divisant la distance totale
+// parcourue par un objet en mouvement par le temps total pris.
 // Écrivez une fonction qui calcule la vitesse d'un objet en mouvement, la vitesse.
 
 // let vitesseObjet = (distanceTotal, tempTotalPris) => distanceTotal / tempTotalPris
 
 // console.log (`La vitesse de votre voiture est de : ${vitesseObjet(1000, 3)}km/h`)
 
-// Le poids d'une substance est calculé comme suit : 
+// Le poids d'une substance est calculé comme suit :
 // poids = masse x gravité. Écrivez une fonction qui calcule le poids.
 
 // let poidSubstance = (masse, gravité) => masse * gravité
 
 // console.log(poidSubstance(3, 4))
+
+// function calculateImc(poid, taille) {
+//   let imc = poid / (taille * taille);
+//   return imc;
+// }
+
+// console.log(calculateImc(1, 3));
+
+//Version 1
+/*const tableau = [1, 2, 3, 4, 2];
+let memoire = [];
+
+for (const nombre of tableau) {
+  if (memoire.includes(nombre)) {
+    console.log(`Vrais = ${nombre}`)
+    break
+  } else {
+    memoire.push(nombre)
+    continue
+  }
+}
+
+// Version 2
+const tableau = [1, 2, 3, 4, 2];
+let rechercheDoublon = new Set(tableau).size != tableau.length
+
+console.log(rechercheDoublon)*/
+
+// Version 1
+
+/* const tableau = [1, 2, 2, 3, 4, 3]
+let nouveauTableau = []
+
+for (const nombre of tableau) {
+  if (nouveauTableau.includes(nombre)) {
+  } else {
+    nouveauTableau.push(nombre)
+  }
+}
+console.log(nouveauTableau)
+
+// Version 2
+
+const tableau = [1, 2, 2, 3, 4, 3]
+let nouveauTableau = [...new Set(tableau)]
+
+console.log(nouveauTableau)*/
+
+// Fusionner deux tableaux sans doublons
+
+/* let tableauUn = [1, 2, 3]; 
+let tableauDeux = [3, 4, 5, 6];
+
+let tableauConcat = tableauUn.concat(tableauDeux);
+let tableauSansDoublon = [...new Set(tableauConcat)];
+console.log(tableauSansDoublon);
+console.log("bonjour") */
+
+// Trouver le nombre qui apparaît le plus souvent dans un tableau
+
+const tableauPrincipal = [1, 2, 2, 3, 3, 3, 4];
+let compteurObjet = {};
+let maxValeur = 0;
+let maxFréquence = 0;
+
+for (const valeur of tableauPrincipal) {
+  if (compteurObjet[valeur]) {
+    compteurObjet[valeur] = compteurObjet[valeur] + 1;
+  } else {
+    compteurObjet[valeur] = 1
+  }
+}
+console.log(compteurObjet)
+
+for (const cles in compteurObjet) {
+  if (compteurObjet[cles] > maxFréquence) {
+    maxFréquence = compteurObjet[cles]
+    maxValeur = Number(cles)
+  }
+}
+
+console.log(`MaxValeur : ${maxValeur}`)
+console.log(`MaxFrequence : ${maxFréquence}`)
