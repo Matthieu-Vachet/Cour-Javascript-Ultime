@@ -1,0 +1,77 @@
+// créer un petit outil JS qui analyse un tableau
+// 1 Compter les occurrences
+// 2 Trouver le plus fréquent
+// 3 Trouver le moins fréquent
+// 
+
+/* 
+BONUS 🔥 (optionnel)
+👉 Trouver :
+
+combien de valeurs uniques
+la somme du tableau
+la moyenne 
+*/
+
+/* 
+Structure du projet (mode pro 🧑‍💻)
+
+👉 Découpe ton code :
+
+1. données (tableau)
+2. compteur
+3. analyse (max / min)
+4. affichage
+*/
+
+/* 
+Exemple de sortie
+Analyse du tableau :
+
+Occurrences : {1:1, 2:2, 3:3, 4:1}
+Plus fréquent : 3
+Moins fréquent : 1
+Nombre de valeurs uniques : 4
+*/
+
+tableauPrincipal <-- [1, 6, 7, 3, 3, 1, 4, 8, 9, 2, 10, 50, 10, 9, 3, 2, 1, 8, 3]
+occurence <-- {}
+maxValeur <-- 0
+minValeur <-- 0
+maxFréquence <-- 0
+minFréquence <-- 0
+sommeTableau <-- 0
+moyenneTableau <-- 0
+
+
+début 
+  // Ajouter les valeur du tableau dans la variable (objet) occurence
+  pour chaques valeurs du tableauPrincipal faire
+    si valeurs et deja présent dans occurence alors
+      occurence[valeurs] <-- occurence[valeurs] + 1
+    sinon
+      occurence[valeurs] = 1
+    fin_si
+  fin_pour
+
+  // Ajouter les fréquence max et les valeur max dans les varriable réspéctible
+  pour chaques cles de occurence faire
+    si occurence[cles] > maxFréquence alors
+      maxFréquence = occurence[cles]
+      maxValeur = number(cles)
+    fin_si
+  fin_pour
+
+  // Ajouter les fréquence min et les valeur min dans les varriable réspéctible
+  pour chaque cles de occurence faire
+    si occurence[cles] < minfréquence alors
+      minfréquence = occurence[cles]
+      minValeur = number(cles)
+    fin_si
+  fin_pour
+
+  afficher "Analyse du tableau :"
+  afficher "Occurence :" occurence
+  afficher "Plus fréquent :" maxFréquence
+  afficher "Moins fréquent :" minFréquence
+fin 
