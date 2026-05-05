@@ -1775,6 +1775,7 @@ console.log("bonjour") */
 
 // Trouver le nombre qui apparaît le plus souvent dans un tableau
 
+/*
 const tableauPrincipal = [1, 2, 2, 3, 3, 3, 4];
 let compteurObjet = {};
 let maxValeur = 0;
@@ -1798,3 +1799,62 @@ for (const cles in compteurObjet) {
 
 console.log(`MaxValeur : ${maxValeur}`)
 console.log(`MaxFrequence : ${maxFréquence}`)
+*/
+
+// Initialisation de veriables, tableau, et objet
+const tableauPrincipal = [1, 7, 3, 3, 1, 8, 9, 2, 10, 10, 9, 3, 2, 1, 8, 3]; //V
+let occurence = {}; 
+let maxValeur = 0; 
+let minValeur = 0; 
+let maxFréquence = 0; 
+let minFréquence = Infinity;
+
+// Fonction pour calculer la somme d'un tableau
+function calculeSomme(arr) {
+  let sommeTableau = 0;
+  for (let index = 0; index < arr.length; index++) {
+    sommeTableau = sommeTableau + index;
+  }
+  return sommeTableau;
+}
+
+// Fonction pour calculer la moyenne des valeurs d'un tableau
+function calculeMoyenne(arr) {
+  let sum = 0;
+  for (let index = 0; index < arr.length; index++) {
+    sum += arr[index];
+  }
+  return sum / arr.length;
+}
+
+// Ajout des valeur d'un tableau dans l'objet
+for (const valeur of tableauPrincipal) {
+  if (occurence[valeur]) {
+    occurence[valeur] = occurence[valeur] + 1;
+  } else {
+    occurence[valeur] = 1;
+  }
+}
+
+// Ajout des valeurs et cles de l'objet dans les variable appropier
+for (const cles in occurence) {
+  if (occurence[cles] > maxFréquence) {
+    maxFréquence = occurence[cles];
+    maxValeur = Number(cles);
+  } else if (occurence[cles] < minFréquence) {
+    minFréquence = occurence[cles];
+    minValeur = Number(cles);
+  }
+}
+
+// Affichage de toutes les valeurs
+console.log(`Analyse du tableau :`);
+
+console.log("Occurrences :", occurence);
+console.log("Plus fréquent :", maxFréquence);
+console.log("Moins fréquent :", minFréquence);
+console.log("Plus haute valeur :", maxValeur);
+console.log("Plus petite valeur :", minValeur);
+console.log("Nombre de valeurs uniques :", Object.values(occurence).length);
+console.log("La somme total du tableau est :", calculeSomme(tableauPrincipal))
+console.log("la moyenne du tableau entier et :", calculeMoyenne(tableauPrincipal))
