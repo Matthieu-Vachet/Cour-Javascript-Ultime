@@ -34,6 +34,7 @@ Moins fréquent : 1
 Nombre de valeurs uniques : 4
 */
 
+/*
 tableauPrincipal <-- [1, 6, 7, 3, 3, 1, 4, 8, 9, 2, 10, 50, 10, 9, 3, 2, 1, 8, 3]
 occurence <-- {}
 maxValeur <-- 0
@@ -75,3 +76,129 @@ début
   afficher "Plus fréquent :" maxFréquence
   afficher "Moins fréquent :" minFréquence
 fin 
+*/
+
+// 🧪 Exercice 23 — Supprimer les doublons SANS Set
+
+// 👉 Objectif :
+
+// Créer un nouveau tableau sans doublons
+
+// 🧾 Données
+// tableauPrincipal <-- [1, 2, 2, 3, 3, 4, 1, 5]
+// 🎯 Résultat attendu
+// [1, 2, 3, 4, 5]
+// ⚠️ Contraintes (important)
+
+// 👉 INTERDIT :
+
+// ❌ new Set()
+// ❌ .filter()
+// ❌ méthodes avancées
+
+// 👉 OBLIGATOIRE :
+
+// ✔️ for...of
+// ✔️ conditions (if)
+// ✔️ tableau résultat
+// 🧠 Indices (juste ce qu’il faut 😏)
+// 👉 1. Créer un nouveau tableau
+// tableauSansDoublons <-- []
+// 👉 2. Parcourir le tableau
+// POUR CHAQUE valeur DANS tableauPrincipal
+// 👉 3. Vérifier si déjà présent
+
+// 💡 question clé :
+
+// est-ce que valeur existe déjà dans tableauSansDoublons ?
+// 👉 4. Si NON
+// ajouter valeur dans tableauSansDoublons
+// 💥 Astuce
+
+// 👉 tu peux utiliser :
+
+// includes()
+
+// tableauPrincipal <-- [1, 2, 2, 3, 3, 4, 1, 5]
+// tableauSansDoublon <-- []
+
+// début
+//   pour chaque valeur dans tableauPrincipal faire
+//     si valeur n'est pas présent dans tableauSansDoublon alors
+//       ajouter valeur dans tableauSansDoublon
+//     fin_si
+//   fin_pour
+// fin
+
+🧪 Exercice 24 — Trouver les doublons
+
+👉 Objectif :
+
+Extraire UNIQUEMENT les valeurs en double
+
+🧾 Données
+tableauPrincipal <-- [1, 2, 2, 3, 3, 4]
+🎯 Résultat attendu
+[2, 3]
+⚠️ Contraintes
+
+👉 toujours en mode entraînement pur :
+
+❌ pas de Set
+❌ pas de .filter()
+✔️ for...of
+✔️ conditions
+✔️ tableau résultat
+🧠 Indices (très importants 👀)
+
+👉 contrairement à l’exercice d’avant :
+
+💥 ici tu dois détecter les répétitions
+
+💡 Idée 1 (simple)
+
+👉 utilise 2 tableaux :
+
+vus <-- []
+doublons <-- []
+💡 Logique
+POUR CHAQUE valeur DANS tableauPrincipal
+
+    SI valeur est déjà dans vus
+        SI valeur n’est PAS déjà dans doublons
+            ajouter dans doublons
+    SINON
+        ajouter dans vus
+
+FIN POUR
+⚠️ Piège classique
+
+👉 éviter ça :
+
+[2, 2, 3, 3]
+
+👉 tu veux :
+
+[2, 3]
+
+💥 donc vérifie aussi dans doublons
+
+
+tableauPrincipal <-- [1, 2, 2, 3, 3, 4]
+vu <-- []
+doublons <-- []
+
+début 
+  pour chaque valeur dans le tableauPrincipal faire
+    si valeur et déja dans le tableau vu alors
+      si valeur n'est pas dans le tableau doublons alors
+        ajouter valeur dans le tableau doublons
+      fin_si
+    sinon
+      ajouter valeur dans le tableau vu
+    fin_si
+  fin_pour
+
+  afficher tableau vu
+  afficher tableau doublons
+fin

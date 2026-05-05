@@ -1575,22 +1575,22 @@ let identifiant = ''
 // let couleurAleatoire = generateurHexadecimal()
 // console.log(couleurAleatoire)
 
-function générateurRgb() {
+// function générateurRgb() {
 
-  let codeRgb = "rgb"
-  let nombreUn, nombreDeux, nombreTrois
+//   let codeRgb = "rgb"
+//   let nombreUn, nombreDeux, nombreTrois
 
-    nombreUn = Math.floor(Math.random() * 250)
-    nombreDeux = Math.floor(Math.random() * 250)
-    nombreTrois = Math.floor(Math.random() * 250)
+//     nombreUn = Math.floor(Math.random() * 250)
+//     nombreDeux = Math.floor(Math.random() * 250)
+//     nombreTrois = Math.floor(Math.random() * 250)
 
   
-  codeRgb += `(${nombreUn},${nombreDeux},${nombreTrois})`
-  return codeRgb
-}
+//   codeRgb += `(${nombreUn},${nombreDeux},${nombreTrois})`
+//   return codeRgb
+// }
 
-let codeGenerer = générateurRgb()
-console.log(codeGenerer)
+// let codeGenerer = générateurRgb()
+// console.log(codeGenerer)
 // let newArr = [];
 
 // for (let i = 0; i < countries.length; i++) {
@@ -1934,7 +1934,7 @@ for (const cles in compteurObjet) {
 console.log(`MaxValeur : ${maxValeur}`)
 console.log(`MaxFrequence : ${maxFréquence}`)
 */
-
+/*
 // Initialisation de veriables, tableau, et objet
 const tableauPrincipal = [1, 7, 3, 3, 1, 8, 9, 2, 10, 10, 9, 3, 2, 1, 8, 3]; //V
 let occurence = {}; 
@@ -1992,3 +1992,42 @@ console.log("Plus petite valeur :", minValeur);
 console.log("Nombre de valeurs uniques :", Object.values(occurence).length);
 console.log("La somme total du tableau est :", calculeSomme(tableauPrincipal))
 console.log("la moyenne du tableau entier et :", calculeMoyenne(tableauPrincipal))
+*/
+
+// const tableauPrincipal = [1, 2, 2, 3, 3, 4, 1, 5]
+// let tableauSansDoublon = []
+
+// for (const valeur of tableauPrincipal) {
+//   if (!tableauSansDoublon.includes(valeur)) {
+//     tableauSansDoublon.push(valeur)
+//   }
+// }
+
+// console.log(tableauSansDoublon)
+
+//initialisation des tableau
+const tableauPrincipal = [1, 2, 2, 3, 3, 4]
+let vu = []
+let doublons = []
+
+// Boucle pour chaque valeur du tableau
+for (const valeur of tableauPrincipal) {
+  // Si la valeur et inclus dans le tableau vu
+  if (vu.includes(valeur)) {
+    // Et si il n'est pas inclus dans le taleau doublons
+    if (!doublons.includes(valeur)) {
+      // Ajouter la valeur dans le tableau doublons
+      doublons.push(valeur)
+    }
+    // Sinon
+  }else{
+    // Ajouter la valeur dans le tableau vu
+    vu.push(valeur)
+  }
+}
+
+// Afficher le tableau vu
+console.log(vu)
+
+// Afficher le tableau doublon
+console.log(doublons)
