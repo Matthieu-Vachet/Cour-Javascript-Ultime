@@ -130,6 +130,7 @@ fin
 //   fin_pour
 // fin
 
+/*
 🧪 Exercice 24 — Trouver les doublons
 
 👉 Objectif :
@@ -201,4 +202,74 @@ début
 
   afficher tableau vu
   afficher tableau doublons
+fin
+*/
+
+/*
+
+🧪 Exercice 25 (version + solide)
+🎯 Objectif
+
+👉 Trouver la valeur la plus fréquente dans un tableau
+
+🧾 Données
+[1, 2, 2, 3, 3, 3, 4]
+🎯 Résultat attendu
+3
+⚠️ Contraintes
+
+👉 toujours en mode entraînement :
+
+❌ pas de Set
+❌ pas de .reduce()
+✔️ boucles
+✔️ conditions
+✔️ objets autorisés 😈
+🧠 Indices (très importants)
+💡 Étape 1
+
+👉 compter les occurrences (ça tu sais faire)
+
+frequences <-- {
+  1: 1,
+  2: 2,
+  3: 3,
+  4: 1
+}
+💡 Étape 2
+
+👉 trouver le max :
+
+max <-- 0
+valeurMax <-- null
+
+POUR CHAQUE clé dans frequences
+    SI frequences[clé] > max
+        max <-- frequences[clé]
+        valeurMax <-- clé
+⚠️ Piège
+
+👉 les clés d’un objet sont des strings
+
+💥 donc fais attention si besoin (Number())
+*/
+
+tableau <-- [1, 2, 2, 3, 3, 3, 4]
+occurence <-- {}
+max <-- 0
+valeurMax <-- 0
+
+début 
+pour chaque valeur de tableau faire
+  si valeur est présent dans occurence alors
+    occurence[valeur] <-- occurence[valeur] + 1
+    sinon
+      occurence[valeur] <-- 1
+  fin_si
+fin_pour
+pour chaque cles dans occurence faire
+  si occurence[cles] > max alors
+    max <-- occurence[cles]
+    valeurMax <-- number(cles)
+    fin_pour
 fin

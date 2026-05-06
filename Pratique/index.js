@@ -2005,6 +2005,7 @@ console.log("la moyenne du tableau entier et :", calculeMoyenne(tableauPrincipal
 
 // console.log(tableauSansDoublon)
 
+/*
 //initialisation des tableau
 const tableauPrincipal = [1, 2, 2, 3, 3, 4]
 let vu = []
@@ -2031,3 +2032,37 @@ console.log(vu)
 
 // Afficher le tableau doublon
 console.log(doublons)
+*/
+
+// Initialisation des variable, tableau et objet
+const tableau = [1, 2, 2, 3, 3, 3, 4]
+let occurence = {}
+let max = 0
+let valeurMax = 0
+
+// Pour chaque valeur dans le tableau
+for (const valeur of tableau) {
+  // Si les v leur sont deja présente dans occurence
+  if (occurence[valeur]) {
+    // Ajouter +1 au valeur
+    occurence[valeur] = occurence[valeur] + 1
+  } else {
+    // Sinon ajouter et initalisatier les valeurs a 1
+    occurence[valeur] = 1
+  }
+}
+// Afficher l'objet occurence
+console.log(occurence)
+
+// Pour chaque cles de l'objet occurence
+for (const cles in occurence) {
+  // Si la valeur des cles et plus gande que la variable max
+  if (occurence[cles] > max) {
+    //Ajouter la valeur de les valeur dans la variable max et valeur max
+    max = occurence[cles]
+    valeurMax = Number(cles)
+  }
+}
+// Afficher les deux variable
+console.log(max)
+console.log(valeurMax)
