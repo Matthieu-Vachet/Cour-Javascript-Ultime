@@ -273,3 +273,6 @@ pour chaque cles dans occurence faire
     valeurMax <-- number(cles)
     fin_pour
 fin
+
+afficher max
+afficher valeurMax
