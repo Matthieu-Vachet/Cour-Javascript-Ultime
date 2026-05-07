@@ -61,3 +61,41 @@ nombre trop grand
 input vide
 input invalide
 */
+
+
+
+
+
+/**
+ * @function nombreRandom
+ * @description Génère un nombre entier aléatoire entre 0 (inclus) et nbr (exclus).
+ * Utilise Math.random() pour générer une valeur pseudo-aléatoire et Math.floor() pour obtenir un entier.
+ * Attention : cette fonction n'est pas cryptographiquement sécurisée et ne doit pas être utilisée pour des enjeux de sécurité.
+ * 
+ * @param {number} nbr - La limite supérieure exclusive du nombre aléatoire.
+ *                       Doit être un entier positif supérieur à 0.
+ *                       Ex: 100 génère un nombre entre 0 et 99
+ * 
+ * @returns {number} Un nombre entier aléatoire compris entre 0 et nbr - 1
+ * @example
+ * // Génère un nombre entre 0 et 99
+ * const random = nombreRandom(100);
+ * console.log(random); // affiche: 42
+ */
+
+function nombreRandom(nbr) {
+  return Math.floor(Math.random() * nbr + 1)
+}
+
+// Varibale de dificulté 
+let nombreRandom50 = nombreRandom(50);
+let nombreRandom100 = nombreRandom(100);
+let nombreRandom500= nombreRandom(500);
+
+// Variable de Tentative
+let compteurTentative = 0;
+
+// Tableau d'historique
+let tableauHistorique = [];
+
+
