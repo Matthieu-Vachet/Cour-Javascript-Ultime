@@ -88,9 +88,9 @@ function nombreRandom(nbr) {
 }
 
 // Varibale de dificulté 
-let nombreRandom50 = nombreRandom(50);
-let nombreRandom100 = nombreRandom(100);
-let nombreRandom500= nombreRandom(500);
+  // let nombreRandom50 = nombreRandom(50);
+  // let nombreRandom100 = nombreRandom(100);
+  // let nombreRandom500= nombreRandom(500);
 
 // Variable de Tentative
 let compteurTentative = 0;
@@ -98,4 +98,35 @@ let compteurTentative = 0;
 // Tableau d'historique
 let tableauHistorique = [];
 
+// Récupération des éléments du DOM (SANS .value)
+const userInput = document.getElementById('userInput');
+const BtnTester = document.getElementById('submitBtn');
+const tentatives = document.getElementById('attempts');
+const btnReset = document.getElementById('resetBtn');
+const difficulté = document.getElementById('difficulty');
 
+let nombreSecret = nombreRandom(50); // Variable pour stocker le nombre secret en fonction de la difficulté choisie
+console.log("🎮 Nombre secret initial:", nombreSecret);
+
+// Choix de la difficulté
+difficulté.addEventListener('change', function() {
+  const selectedDifficulty = this.value;
+  if (selectedDifficulty === "50") {
+    nombreSecret = nombreRandom(50)
+  } else if (selectedDifficulty === "100") {
+    nombreSecret = nombreRandom(100)
+  } else if (selectedDifficulty === "500") {
+    nombreSecret = nombreRandom(500)
+  }
+  console.log("🎮 Nouveau nombre secret:", nombreSecret, "Difficulté:", selectedDifficulty);
+})
+
+// Vérification de la saisie utilisateur
+userInput.addEventListener('input', function() {
+  const value = this.value
+  if (value === '' || isNaN(value) || value < 1 || value > selectedDifficulty) {
+    
+  } else {
+    
+  }
+})
