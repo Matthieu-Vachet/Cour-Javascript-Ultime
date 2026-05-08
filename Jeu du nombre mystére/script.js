@@ -124,9 +124,34 @@ difficulté.addEventListener('change', function() {
 // Vérification de la saisie utilisateur
 userInput.addEventListener('input', function() {
   const value = this.value
-  if (value === '' || isNaN(value) || value < 1 || value > selectedDifficulty) {
-    
+  if (value === '' || isNaN(value) || value < 1 || value > parseInt(difficulté.value)) {
+    this.classList.add('invalid');
+    BtnTester.disabled = true;
+    alert("⚠️ Veuillez entrer un nombre valide entre 1 et " + difficulté.value);
+    userInput.value = ''; // Réinitialise le champ de saisie
   } else {
-    
+    this.classList.remove('invalid');
+    BtnTester.disabled = false;
   }
+  console.log("🎮 Nombre utilisateur:", userInput.value);
+})
+
+// Fonction de validation du nombre saisi
+BtnTester.addEventListener('click', function() {
+  const userGuess = parseInt(userInput.value);
+  compteurTentative++;
+  tentatives.textContent = "Tentatives: " + compteurTentative;
+
+  if (userGuess < nombreSecret) {
+    alert("📉 Trop petit !");
+    tableauHistorique.push(userGuess + " (trop petit)");
+  } else if (userGuess > nombreSecret) {
+    alert("📈 Trop grand !");
+    tableauHistorique.push(userGuess + " (trop grand)");
+  } else {
+    alert("🎉 Gagné en " + compteurTentative + " tentatives !");
+    tableauHistorique.push(userGuess + " (gagné)");
+    BtnTester.disabled = true; // Désactive le bouton après victoire
+  }
+  console.log("🎮 Historique des essais:", tableauHistorique);
 })
