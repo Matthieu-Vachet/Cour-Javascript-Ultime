@@ -1,70 +1,13 @@
-/*
-🧩 3. Fonctionnalités (MVP = version minimale)
-👉 MVP = ce que tu DOIS faire en premier
 
-Fonctionnalités obligatoires :
-entrer un nombre
-valider la saisie
-comparer avec le nombre secret
-afficher un message :
-trop grand
-trop petit
-gagné
-
-🚀 4. Fonctionnalités bonus (à faire APRÈS)
-
-compteur de tentatives
-bouton reset
-empêcher les valeurs invalides
-message d’erreur (champ vide)
-historique des essais
-difficulté (1-50 / 1-100 / 1-500)
-
-🧠 6. Logique métier (IMPORTANT)
-👉 Tu dois réfléchir comme ça :
-
-Initialisation :
-générer un nombre aléatoire
-initialiser les variables (tentatives…)
-Interaction utilisateur :
-récupérer la valeur entrée
-vérifier si valide
-comparer avec le nombre secret
-Résultat :
-afficher message adapté
-incrémenter les tentatives
-
-🔄 7. Cycle de fonctionnement
-👉 Flow utilisateur :
-
-L’utilisateur arrive sur la page
-Il entre un nombre
-Il clique sur "tester"
-Le système répond
-Il recommence jusqu’à gagner
-
-⚠️ 8. Cas à gérer (comme un pro)
-👉 Très important (souvent oublié)
-
-champ vide
-valeur non numérique
-nombre hors limite (ex: 200)
-clic sans saisie
-rejouer après victoire
-
-🧪 9. Tests à prévoir
-👉 Tu dois tester :
-
-nombre correct
-nombre trop petit
-nombre trop grand
-input vide
-input invalide
-*/
-
-
-
-
+// Récupération des éléments du DOM
+const userInput = document.getElementById('userInput');
+const BtnTester = document.getElementById('submitBtn');
+const tentatives = document.getElementById('attempts');
+const btnReset = document.getElementById('resetBtn');
+const difficulté = document.getElementById('difficulty');
+const status = document.getElementById('status')
+const historique = document.getElementById('historyList')
+const feedback = document.getElementById('feedback')
 
 /**
  * @function nombreRandom
@@ -87,31 +30,33 @@ function nombreRandom(nbr) {
   return Math.floor(Math.random() * nbr + 1)
 }
 
-// Varibale de dificulté 
-  // let nombreRandom50 = nombreRandom(50);
-  // let nombreRandom100 = nombreRandom(100);
-  // let nombreRandom500= nombreRandom(500);
+let nombreSecret = nombreRandom(50); // Variable pour stocker le nombre secret en fonction de la difficulté choisie
+console.log("🎮 Nombre secret initial:", nombreSecret);
 
 // Variable de Tentative
 let compteurTentative = 0;
 
-// Tableau d'historique
-let tableauHistorique = [];
 
-// Récupération des éléments du DOM (SANS .value)
-const userInput = document.getElementById('userInput');
-const BtnTester = document.getElementById('submitBtn');
-const tentatives = document.getElementById('attempts');
-const btnReset = document.getElementById('resetBtn');
-const difficulté = document.getElementById('difficulty');
+/**
+ * @function resetGame
+ * @description Réinitialise le jeu en générant un nouveau nombre secret et en réinitialisant les variables.
+ */
 
-let nombreSecret = nombreRandom(50); // Variable pour stocker le nombre secret en fonction de la difficulté choisie
-console.log("🎮 Nombre secret initial:", nombreSecret);
+function resetGame() {
+  userInput.value = "" // Réinitialise le champ de saisie
+  BtnTester.disabled = false // Réactive le bouton de test
+  compteurTentative = 0 // Réinitialise le compteur de tentatives
+  tentatives.textContent = compteurTentative // Met à jour l'affichage du compteur de tentatives
+  status.textContent = "En cours..." // Réinitialise le statut du jeu
+  historique.innerHTML = "" // Réinitialise l'historique des essais
+  nombreSecret = nombreRandom(parseInt(difficulté.value)) // Génère un nouveau nombre secret en fonction de la difficulté actuelle
+  console.log("🎮 Jeu réinitialisé. Nouveau nombre secret:", nombreSecret)
+}
 
 // Choix de la difficulté
 difficulté.addEventListener('change', function() {
   const selectedDifficulty = this.value;
-  if (selectedDifficulty === "50") {
+  if (selectedDifficulty === "50") { 
     nombreSecret = nombreRandom(50)
   } else if (selectedDifficulty === "100") {
     nombreSecret = nombreRandom(100)
@@ -125,33 +70,64 @@ difficulté.addEventListener('change', function() {
 userInput.addEventListener('input', function() {
   const value = this.value
   if (value === '' || isNaN(value) || value < 1 || value > parseInt(difficulté.value)) {
-    this.classList.add('invalid');
-    BtnTester.disabled = true;
     alert("⚠️ Veuillez entrer un nombre valide entre 1 et " + difficulté.value);
     userInput.value = ''; // Réinitialise le champ de saisie
-  } else {
-    this.classList.remove('invalid');
-    BtnTester.disabled = false;
   }
   console.log("🎮 Nombre utilisateur:", userInput.value);
 })
 
+/**
+  * @function updateHistoriqueStatus
+  * @description Met à jour l'historique des essais avec le message correspondant à chaque tentative.
+  * Crée un nouvel élément de liste (li) pour chaque essai et l'ajoute à la liste d'historique.
+  * Affiche le numéro de tentative, la valeur saisie par l'utilisateur et le message de statut (trop petit, trop grand
+  * ou gagné).
+  * 
+  * @param {string} message - Le message de statut à afficher pour l'essai actuel (ex: "Trop petit", "Trop grand", "Gagné").
+  * 
+  * @example
+  * // Après une tentative où l'utilisateur a saisi 25 et que le nombre secret est plus grand
+  * updateHistoriqueStatus("Trop petit");
+  * // Affiche dans l'historique: "Essai 1: 25 (Trop petit)"
+  */
+
+function updateHistoriqueStatus(message) {
+  const li = document.createElement('li');
+  li.textContent = `Essai ${compteurTentative}: ${userInput.value} (${message})`;
+  historique.appendChild(li);
+}
+
 // Fonction de validation du nombre saisi
 BtnTester.addEventListener('click', function() {
-  const userGuess = parseInt(userInput.value);
+  const value = userInput.value;
+  
+  // Vérification que le champ n'est pas vide
+  if (value === '' || isNaN(value)){
+    alert("⚠️ Veuillez entrer un nombre valide entre 1 et " + difficulté.value);
+    return;
+  }
+  
+  const userGuess = parseInt(value);
   compteurTentative++;
-  tentatives.textContent = "Tentatives: " + compteurTentative;
+  tentatives.textContent = compteurTentative;
 
   if (userGuess < nombreSecret) {
-    alert("📉 Trop petit !");
-    tableauHistorique.push(userGuess + " (trop petit)");
+    status.textContent = 'Trop petit !'
+    updateHistoriqueStatus('Trop petit');
+    userInput.value = ""; // Réinitialise le champ de saisie après chaque essai
   } else if (userGuess > nombreSecret) {
-    alert("📈 Trop grand !");
-    tableauHistorique.push(userGuess + " (trop grand)");
-  } else {
-    alert("🎉 Gagné en " + compteurTentative + " tentatives !");
-    tableauHistorique.push(userGuess + " (gagné)");
+    status.textContent = 'Trop grand !'
+    updateHistoriqueStatus('Trop grand');
+    userInput.value = ""; // Réinitialise le champ de saisie après chaque essai
+  } else if (userGuess === nombreSecret) {
+    status.textContent = `Gagné!`
+    const p = document.createElement('p');
+    updateHistoriqueStatus('Gagné');
+    p.textContent = `Bravo! Gagné en ${compteurTentative} tentatives !`;
+    feedback.appendChild(p);
     BtnTester.disabled = true; // Désactive le bouton après victoire
   }
-  console.log("🎮 Historique des essais:", tableauHistorique);
 })
+
+// Bouton de réinitialisation du jeu
+btnReset.addEventListener('click', resetGame);
