@@ -26,7 +26,7 @@ const feedback = document.getElementById("feedback");
  */
 
 function nombreRandom(nbr) {
-  return Math.floor(Math.random() * nbr + 1);
+  return Math.floor(Math.random() * nbr) + 1;
 }
 
 let nombreSecret = nombreRandom(parseInt(difficulté.value)); // Variable pour stocker le nombre secret en fonction de la difficulté choisie
