@@ -33,7 +33,7 @@ let nombreSecret = nombreRandom(parseInt(difficulté.value)); // Variable pour s
 console.log("🎮 Nombre secret initial:", nombreSecret);
 
 // Variable de Tentative
-let compteurTentative = 0;
+let compteurTentative = 0; // Compteur de tentatives pour suivre le nombre d'essais de l'utilisateur;
 
 /**
  * @function resetGame
@@ -43,7 +43,7 @@ let compteurTentative = 0;
 function resetGame() {
   gameOver = false;
   resetInput()
-  disabledBtnInput = false
+  disabledBtnInput(false)
   compteurTentative = 0; // Réinitialise le compteur de tentatives
   tentatives.textContent = compteurTentative; // Met à jour l'affichage du compteur de tentatives
   statusMessage(`En cours...`, "stat-value status-playing"); // Réinitialise le statut du jeu
@@ -53,7 +53,7 @@ function resetGame() {
   console.log("🎮 Jeu réinitialisé. Nouveau nombre secret:", nombreSecret);
 }
 
-let maxTentatives = 0; // Limite de tentatives
+let maxTentatives = 9; // Limite de tentatives (mode facile par défaut = 10 essais max)
 
 // Choix de la difficulté
 difficulté.addEventListener("change", function () {
@@ -125,13 +125,14 @@ function handleGuess() {
     return;
   }
   compteurTentative++;
+  console.log("🎮 Tentative n°", compteurTentative, " - Valeur saisie:", UserValue);
+  tentatives.textContent = compteurTentative;
 
-  if (compteurTentative > maxTentatives && UserValue !== nombreSecret) {
+  if (compteurTentative > maxTentatives) {
     lose();
     return;
   }
   
-  tentatives.textContent = compteurTentative;
   checkResult(UserValue);
 }
 
@@ -217,6 +218,7 @@ btnReset.addEventListener("click", resetGame);
  * @param {string} style - La classe CSS à appliquer pour styliser le message.
  */
 function feedbackMessage(message, style) {
+  feedback.innerHTML = "";
   const p = document.createElement("p");
   p.textContent = message;
   p.className = style;
