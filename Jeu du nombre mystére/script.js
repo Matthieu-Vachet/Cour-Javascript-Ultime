@@ -41,33 +41,34 @@ let compteurTentative = 0;
  */
 
 function resetGame() {
-  userInput.value = ""; // Réinitialise le champ de saisie
-  userInput.disabled = false;
-  BtnTester.disabled = false; // Réactive le bouton de test
+  gameOver = false;
+  resetInput()
+  disabledBtnInput = false
   compteurTentative = 0; // Réinitialise le compteur de tentatives
   tentatives.textContent = compteurTentative; // Met à jour l'affichage du compteur de tentatives
-  status.textContent = "En cours..."; // Réinitialise le statut du jeu
+  statusMessage(`En cours...`, "stat-value status-playing"); // Réinitialise le statut du jeu
   historique.innerHTML = ""; // Réinitialise l'historique des essais
   nombreSecret = nombreRandom(parseInt(difficulté.value)); // Génère un nouveau nombre secret en fonction de la difficulté actuelle
+  feedback.textContent = ""; // Affiche un message de feedback pour indiquer que le jeu a été réinitialisé
   console.log("🎮 Jeu réinitialisé. Nouveau nombre secret:", nombreSecret);
 }
+
+let maxTentatives = 0; // Limite de tentatives
 
 // Choix de la difficulté
 difficulté.addEventListener("change", function () {
   const selectedDifficulty = this.value;
   if (selectedDifficulty === "50") {
-    nombreSecret = nombreRandom(50);
+    resetGame();
+    maxTentatives = 10 - 1;
   } else if (selectedDifficulty === "100") {
-    nombreSecret = nombreRandom(100);
+    resetGame();
+    maxTentatives = 7 - 1;
   } else if (selectedDifficulty === "500") {
-    nombreSecret = nombreRandom(500);
+    resetGame();
+    maxTentatives = 5 - 1;
   }
-  console.log(
-    "🎮 Nouveau nombre secret:",
-    nombreSecret,
-    "Difficulté:",
-    selectedDifficulty,
-  );
+  console.log("🎮 Nouveau nombre:", nombreSecret, "Max tentatives:", maxTentatives + 1);
 });
 
 // Vérification de la saisie utilisateur
@@ -79,8 +80,8 @@ userInput.addEventListener("input", function () {
     value < 1 ||
     value > parseInt(difficulté.value)
   ) {
-    alert("⚠️ Veuillez entrer un nombre valide entre 1 et " + difficulté.value);
-    userInput.value = ""; // Réinitialise le champ de saisie
+    feedbackMessage(`⚠️ Veuillez entrer un nombre valide entre 1 et ${difficulté.value}`, "feedback-message error");
+    resetInput()
   }
   console.log("🎮 Nombre utilisateur:", userInput.value);
 });
@@ -104,6 +105,7 @@ function updateHistoriqueStatus(message) {
 // Fonction de validation du nombre saisi
 BtnTester.addEventListener("click", handleGuess)
 
+let gameOver = false;
 
 /**
   * @function handleGuess
@@ -115,12 +117,20 @@ BtnTester.addEventListener("click", handleGuess)
  */
 function handleGuess() {
   const UserValue = Number(userInput.value);
+  feedback.textContent = "";
 
   if (isNaN(UserValue)) {
-    alert("⚠️ Veuillez entrer un nombre valide entre 1 et " + difficulté.value);
+    feedbackMessage(`⚠️ Veuillez entrer un nombre valide entre 1 et ${difficulté.value}`, "feedback-message error");
+    resetInput()
     return;
   }
   compteurTentative++;
+
+  if (compteurTentative > maxTentatives && UserValue !== nombreSecret) {
+    lose();
+    return;
+  }
+  
   tentatives.textContent = compteurTentative;
   checkResult(UserValue);
 }
@@ -137,13 +147,13 @@ function checkResult(value) {
   if (value === nombreSecret) {
     win();
   } else if (value < nombreSecret) {
-    status.textContent = "Trop petit !";
+    feedbackMessage("Trop petit ! Essayez à nouveau.", "feedback-message too-low");
     updateHistoriqueStatus("Trop petit");
-    userInput.value = ""; // Réinitialise le champ de saisie après chaque essai
+    resetInput()
   } else {
-    status.textContent = "Trop grand !";
+    feedbackMessage("Trop grand ! Essayez à nouveau.", "feedback-message too-high");
     updateHistoriqueStatus("Trop grand");
-    userInput.value = ""; // Réinitialise le champ de saisie après chaque essai
+    resetInput()
   }
 }
 
@@ -154,14 +164,73 @@ function checkResult(value) {
  * et désactive le bouton de test et le champ de saisie pour empêcher de nouvelles tentatives après la victoire.
  */
 function win() {
-  status.textContent = `Gagné!`;
-  const p = document.createElement("p");
+  statusMessage(`Gagné!`, "stat-value status-won");
   updateHistoriqueStatus("Gagné");
-  p.textContent = `Bravo! Gagné en ${compteurTentative} tentatives !`;
-  feedback.appendChild(p);
-  BtnTester.disabled = true; // Désactive le bouton après victoire
-  userInput.disabled = true;
+  feedbackMessage(`Félicitations! Vous avez trouvé le nombre secret en ${compteurTentative} tentatives.`, "feedback-message correct");
+  disabledBtnInput(true)
+}
+
+/**
+ * @function lose
+ * @description Affiche le message de défaite lorsque l'utilisateur atteint le nombre maximum de tentatives sans trouver le nombre secret.
+ * Met à jour le statut du jeu, ajoute un message de consolation dans la section de feedback,
+ * et désactive le bouton de test et le champ de saisie pour empêcher de nouvelles tentatives après la défaite.
+ * Affiche également le nombre secret pour informer l'utilisateur de la réponse correcte.
+ */
+function lose() {
+  gameOver = true;
+  statusMessage(`Perdu :(`, "stat-value status-lost")
+  updateHistoriqueStatus(`Perdu`)
+  feedbackMessage(`Dommage vous avez utilisé vos ${maxTentatives + 1} tentatives! Le nombre secret était ${nombreSecret}`)
+  disabledBtnInput(true)
+} 
+
+/**
+ * @function resetInput
+ * @description Réinitialise le champ de saisie de l'utilisateur en le vidant et en lui redonnant le focus.
+ * Permet à l'utilisateur de saisir une nouvelle valeur après chaque tentative, que ce soit après une erreur ou une victoire.
+ */
+function resetInput() {
+  userInput.value = "";
+  userInput.focus();
+}
+
+/**
+  * @function disabledBtnInput
+  * @description Active ou désactive le bouton de test et le champ de saisie en fonction du paramètre boolean.
+  * Permet de contrôler l'interactivité du jeu en désactivant les éléments d'entrée lorsque le jeu est terminé (gagné ou perdu) et en les réactivant lors de la réinitialisation du jeu.
+  * @param {boolean} bl - Si true, désactive le bouton de test et le champ de saisie; si false, les active.
+ */
+function disabledBtnInput(bl) {
+  BtnTester.disabled = bl
+  userInput.disabled = bl
 }
 
 // Bouton de réinitialisation du jeu
 btnReset.addEventListener("click", resetGame);
+
+
+/**
+ * @function feedbackMessage
+ * @description Affiche un message de feedback dans la section dédiée.
+ * @param {string} message - Le message à afficher.
+ * @param {string} style - La classe CSS à appliquer pour styliser le message.
+ */
+function feedbackMessage(message, style) {
+  const p = document.createElement("p");
+  p.textContent = message;
+  p.className = style;
+  feedback.appendChild(p);
+}
+
+/**
+  * @function statusMessage
+  * @description Met à jour le message de statut du jeu avec le texte et le style spécifiés.
+  * Modifie le contenu textuel de l'élément de statut et applique la classe CSS correspondante pour refléter le résultat de chaque tentative (gagné, trop petit, trop grand).
+  * @param {string} message - Le message de statut à afficher (ex: "Gagné!", "En cours...").
+  * @param {string} style - La classe CSS à appliquer pour styliser le message de statut (ex: "status-won", "status-playing").
+ */
+function statusMessage(message, style) {
+  status.textContent = message;
+  status.className = style;
+}
